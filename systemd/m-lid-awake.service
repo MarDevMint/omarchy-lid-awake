@@ -1,0 +1,12 @@
+[Unit]
+Description=Stay awake while laptop lid is closed (m.indicators LidAwake)
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/systemd-inhibit --what=handle-lid-switch --mode=block --who=Omarchy "--why=Stay awake while laptop lid is closed" /usr/bin/sleep infinity
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=graphical-session.target
